@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>룸메이트온 (One-Room Way) 기획서</title>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        header {
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .badge {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        h1 {
+            font-size: 2.25rem;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        .author {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        section {
+            margin-bottom: 2.5rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+            color: var(--gray-900);
+            margin: 1rem 0 0.5rem 0;
+        }
+        p, li {
+            color: var(--gray-700);
+            margin-bottom: 0.75rem;
+        }
+        ul {
+            padding-left: 1.5rem;
+        }
+        .highlight-box {
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .arch-box {
+            background: var(--gray-100);
+            padding: 1.25rem;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+            color: var(--gray-900);
+            border: 1px solid var(--gray-200);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th {
+            background-color: var(--gray-100);
+            color: var(--gray-900);
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: var(--gray-50);
+        }
+        .wireframes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .wf-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .wf-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="badge">[중간고사 대체 과제]</span>
+            <h1>첫 독립 가구 맞춤형 예산 및 필수 가전 관리 웹앱: "룸메이트온 (One-Room Way)" 기획서</h1>
+            <div class="author">작성자: 서수정</div>
+        </header>
+
+        <section>
+            <h2>1. 프로젝트 개요 및 기획 배경 (개선된 방향)</h2>
+            <h3>기존 아이템(공유 자전거, 배달 팟, 뻔한 캘린더 등)과의 차이점 (중요)</h3>
+            <p><strong>기존 기획의 한계:</strong> 시중에 이미 대기업 서비스(배달의민족, 토스, 카카오맵 등)가 장악하고 있거나, 일상에서 굳이 웹앱으로 만들 실효성이 떨어져 기획의 타당성(왜 직접 개발해야 하는가?)을 설명하기 어려웠음.</p>
+            <div class="highlight-box">
+                <p><strong>개선된 기획 (본 아이템):</strong> 20대 사회초년생 및 대학생들이 생애 처음 독립할 때 겪는 '정보 과부하와 예산 통제 불능 상태(페인 포인트)'를 정확히 타겟팅함. 종합 인테리어 플랫폼은 쇼핑 유도가 너무 심하고 엑셀은 번거롭다는 점에 착안하여, 이사 D-Day 역산 관리와 품목별 예산 CRUD(생성·수정·삭제)를 결합한 미니멀 전용 웹앱으로 차별화함.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. 시스템 구성도 (System Architecture)</h2>
+            <p>본 프로젝트는 복잡한 외부 API 연동 없이 프론트엔드와 경량 백엔드(Supabase/Local Storage) 간의 데이터 흐름에 집중하여, 혼자서 구현하기에 가장 안정적인 구조로 설계되었습니다.</p>
+            <div class="arch-box">[사용자 (Client: Web Browser)]
+- HTML5 / CSS3 / JavaScript (UI & Client-side Logic)
+  · D-Day 카운트다운 계산기
+  · 예산 합산 및 실시간 잔액 연산 (JavaScript Sum Algorithm)
+  · 로컬 상태 및 체크박스 토글 제어
+
+(REST API / Fetch)
+
+[백엔드 데이터베이스 (Supabase / Database)]
+- Table 1: users (사용자 기본 예산 정보 - 총 예산, 이사 목표일)
+- Table 2: items (구매 품목 데이터 - 품목명, 카테고리, 예상가, 실구매가, 상태)
+- Table 3: checklists (부동산/입주청소 체크리스트 상태 값)</div>
+        </section>
+
+        <section>
+            <h2>3. 화면 설계서 (와이어프레임)</h2>
+            <div class="wireframes">
+                <div class="wf-card">
+                    <h4>[화면 1] 메인 대시보드</h4>
+                    <ul>
+                        <li>이사 예정일과 D-Day</li>
+                        <li>전체 예산 / 남은 예산</li>
+                        <li>현재까지 실제로 지출한 금액</li>
+                        <li>구매 예정 품목 예산 및 바로가기 버튼</li>
+                    </ul>
+                </div>
+                <div class="wf-card">
+                    <h4>[화면 2] 품목 및 예산 관리</h4>
+                    <ul>
+                        <li>품목명과 카테고리 설정</li>
+                        <li>예상 가격과 실제 구매가 관리</li>
+                        <li>구매 상태 (고민중, 장바구니, 구매완료)</li>
+                        <li>품목 추가·수정·삭제 기능</li>
+                    </ul>
+                </div>
+                <div class="wf-card">
+                    <h4>[화면 3] 계약 및 입주 체크리스트</h4>
+                    <ul>
+                        <li>계약 전 확인 항목</li>
+                        <li>입주 전 확인 항목</li>
+                        <li>체크 완료 여부 토글 및 전체 완료 항목 수 표시</li>
+                    </ul>
+                </div>
+                <div class="wf-card">
+                    <h4>[화면 4] 최종 지출 내역</h4>
+                    <ul>
+                        <li>실제 지출 합계 및 남은 예산 확인</li>
+                        <li>구매 완료된 품목 목록 및 영수증 프리뷰</li>
+                        <li>지출 내역 복사 버튼</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. MVP (Minimum Viable Product) 구현 범위 요약</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>기능</th>
+                        <th>구현 내용</th>
+                        <th>우선순위</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>기본 설정</td>
+                        <td>총예산과 이사 날짜 입력 및 수정</td>
+                        <td>필수</td>
+                    </tr>
+                    <tr>
+                        <td>품목 관리</td>
+                        <td>품목 추가·조회·수정·삭제</td>
+                        <td>필수</td>
+                    </tr>
+                    <tr>
+                        <td>예산 계산</td>
+                        <td>예상 지출, 실제 지출, 남은 예산 자동 계산</td>
+                        <td>필수</td>
+                    </tr>
+                    <tr>
+                        <td>구매 상태 관리</td>
+                        <td>고민 중·장바구니·구매 완료 상태 변경</td>
+                        <td>필수</td>
+                    </tr>
+                    <tr>
+                        <td>체크리스트</td>
+                        <td>계약 및 입주 확인 항목 체크</td>
+                        <td>필수</td>
+                    </tr>
+                    <tr>
+                        <td>지출 내역 복사</td>
+                        <td>구매 완료된 품목과 실제 지출 합계 복사</td>
+                        <td>선택</td>
+                    </tr>
+                    <tr>
+                        <td>회원가입 및 로그인</td>
+                        <td>계정 생성과 사용자 인증</td>
+                        <td>추후 개발</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
